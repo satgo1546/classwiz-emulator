@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ClassWiz emulator</title>
 <style>
-	#container {
-		width: 375px;
-		height: 635px;
-		position: relative;
+	body {
+		margin: 0;
+		overflow: hidden;
+		background-color: #e0e1df;
 	}
 
-	#screen {
-		width: 262px;
-		left: 56px;
-		top: 58px;
+	a {
+		text-decoration: none;
+	}
+
+	#hud {
 		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		opacity: .7;
+		text-align: center;
+	}
+
+	#container {
+		position: absolute;
+		left: 0;
+		top: 0;
+		transform-origin: left top;
 	}
 
 	#status {
 		position: absolute;
 		left: 56px;
 		top: 44px;
+		width: 262px;
+	}
+
+	#status>*>* {
+		/* The initial state is to hide all the status icons because no model has been selected. */
+		opacity: 0;
+	}
+
+	#screen {
+		position: absolute;
+		left: 56px;
+		top: 58px;
 		width: 262px;
 	}
 
@@ -31,43 +57,6 @@
 	}
 
 </style>
-<select id="modelSelect">
-	<option selected disabled>Select a model</option>
-	<optgroup label="ClassWiz CW Series (EY)">
-		<option value="EY005">fx-570/991CW</option>
-		<option value="EY001">fx-82/85/350CW</option>
-		<option value="EY044">fx-8200 AU</option>
-		<option value="EY039">fx-570/991LA CW</option>
-		<option value="EY036">fx-82LA CW</option>
-		<option value="EY023">fx-880BTG</option>
-	</optgroup>
-	<optgroup label="ClassWiz X Series (CY)">
-		<option value="CY234">fx-570/991EX</option>
-		<option value="CY230">fx-82/85/350EX</option>
-		<option value="CY258">fx-570/991AR X</option>
-		<option value="CY257">fx-95AR X</option>
-		<option value="CY256">fx-82AR X</option>
-		<option value="CY247">fx-92B Spéciale Collège</option>
-		<option value="CY294">fx-991CE X</option>
-		<option value="CY291">fx-82/85/350CE X</option>
-		<option value="CY251">fx-991DE X</option>
-		<option value="CY250">fx-87DE X</option>
-		<option value="CY215">fx-82/85DE X</option>
-		<option value="CY295">fx-92+ Spéciale Collège</option>
-		<option value="CY213">fx-83/85GT X</option>
-		<option value="CY243">fx-JP900</option>
-		<option value="CY242">fx-JP700</option>
-		<option value="CY241">fx-JP500</option>
-		<option value="CY240">fx-530AZ</option>
-		<option value="CY272">fx-570/991LA X</option>
-		<option value="CY270">fx-82/350LA X</option>
-		<option value="CY217">fx-991RS X</option>
-		<option value="CY297">fx-97SG X</option>
-		<option value="CY268">fx-570/991SP X/X II</option>
-		<option value="CY266">fx-82/85/350SP X/X II</option>
-		<option value="CY298">fx-580VN X</option>
-	</optgroup>
-</select>
 <div id="container">
 	<svg id="status" viewBox="0 0 576 24">
 		<g id="statusCY">
@@ -293,6 +282,53 @@
 	<canvas id="screen"></canvas>
 	<div id="keypad"></div>
 </div>
+<div id="hud">
+	<a href="https://github.com/satgo1546/classwiz-emulator">
+		<svg viewBox="0 0 16 16" width="16" height="16">
+			<path
+				d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+			</path>
+		</svg>
+	</a>
+	<select id="modelSelect">
+		<option selected disabled>Select a model</option>
+		<optgroup label="ClassWiz CW Series (EY)">
+			<option value="EY005">fx-570/991CW</option>
+			<option value="EY001">fx-82/85/350CW</option>
+			<option value="EY044">fx-8200 AU</option>
+			<option value="EY039">fx-570/991LA CW</option>
+			<option value="EY036">fx-82LA CW</option>
+			<option value="EY023">fx-880BTG</option>
+		</optgroup>
+		<optgroup label="ClassWiz X Series (CY)">
+			<option value="CY234">fx-570/991EX</option>
+			<option value="CY230">fx-82/85/350EX</option>
+			<option value="CY258">fx-570/991AR X</option>
+			<option value="CY257">fx-95AR X</option>
+			<option value="CY256">fx-82AR X</option>
+			<option value="CY247">fx-92B Spéciale Collège</option>
+			<option value="CY294">fx-991CE X</option>
+			<option value="CY291">fx-82/85/350CE X</option>
+			<option value="CY251">fx-991DE X</option>
+			<option value="CY250">fx-87DE X</option>
+			<option value="CY215">fx-82/85DE X</option>
+			<option value="CY295">fx-92+ Spéciale Collège</option>
+			<option value="CY213">fx-83/85GT X</option>
+			<option value="CY243">fx-JP900</option>
+			<option value="CY242">fx-JP700</option>
+			<option value="CY241">fx-JP500</option>
+			<option value="CY240">fx-530AZ</option>
+			<option value="CY272">fx-570/991LA X</option>
+			<option value="CY270">fx-82/350LA X</option>
+			<option value="CY217">fx-991RS X</option>
+			<option value="CY297">fx-97SG X</option>
+			<option value="CY268">fx-570/991SP X/X II</option>
+			<option value="CY266">fx-82/85/350SP X/X II</option>
+			<option value="CY298">fx-580VN X</option>
+		</optgroup>
+	</select>
+	<input id="infoOutput" readonly value="No error handling; use inspector">
+</div>
 <script src="lib/simwrapper.js"></script>
 <script src="lib/simlib.js"></script>
 <script>
@@ -301,13 +337,14 @@
 	modelSelect.onchange = async () => {
 		const model = modelSelect.value
 		if (sim) sim.Stop()
-		document.getElementById('container').style.backgroundImage = `url("data/${model}/face.svg")`
+		infoOutput.value = 'Loading'
+		container.style.backgroundImage = `url("data/${model}/face.svg")`
 		Array.prototype.forEach.call(document.getElementById('status').children, el => el.style.display = 'none')
 		// When the selected model is changed, a new SimWrapper is allocated to replace the old one.
 		const simWrapper = new SimWrapper
 		sim = simWrapper
 		await simWrapper.Init(model)
-		modelSelect.title = `simulator version = ${simWrapper.Version()}\nROM version = ${simWrapper.RomVersion()}`
+		infoOutput.value = simWrapper.RomVersion()
 		document.getElementById('keypad').innerHTML = await (await fetch(`data/${model}/face.html`)).text()
 		keypad.onpointerdown = event => {
 			if (event.target.classList.contains('face_key')) {
@@ -332,4 +369,16 @@
 			requestAnimationFrame(render)
 		})
 	}
+
+	(onresize = () => {
+		const width = 375
+		const height = 635
+		const scale = Math.min(document.documentElement.clientWidth / width, document.documentElement.clientHeight / height)
+		container.style.width = width + 'px'
+		container.style.height = height + 'px'
+		container.style.transform = `translate(
+			${(document.documentElement.clientWidth - width * scale) / 2}px,
+			${(document.documentElement.clientHeight - height * scale) / 2}px
+		) scale(${scale})`
+	})()
 </script>
