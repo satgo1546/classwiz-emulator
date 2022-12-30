@@ -396,38 +396,14 @@
 	})()
 
 	saveROM.onclick = () => {
-		let segment0, segment123
-		// Search for the interrupt vector table.
-		// This code assumes a little-endian machine.
-		for (let i = Module.HEAPU16.indexOf(0xf000); i >= 0; i = Module.HEAPU16.indexOf(0xf000, i + 1)) {
-			const ivt = Module.HEAPU16.slice(i + 4, i + 16).sort()
-			if (ivt[0] && ivt[0] === ivt[10]) {
-				if (segment0) {
-					infoOutput.value = 'Multiple possible segment #0 found; extraction failed'
-					return
-				}
-				segment0 = Module.HEAPU8.subarray(i * 2, i * 2 + 0x10000)
-			}
-		}
-		// Search for the number part of the model (4-byte aligned).
-		// The criterion of HEAPU32[i+2..i+3] being zero is valid for emulator ROMs only.
-		const modelMagic = 0x2d | modelSelect.value.codePointAt(2) << 8 | modelSelect.value.codePointAt(3) << 16 | modelSelect.value.codePointAt(4) << 24
-		for (let i = Module.HEAPU32.indexOf(modelMagic); i >= 0; i = Module.HEAPU32.indexOf(modelMagic, i + 1)) {
-			if (String.fromCodePoint(Module.HEAPU8[i * 4 - 2], Module.HEAPU8[i * 4 - 1]) === modelSelect.value.slice(0, 2) && Module.HEAPU32[i + 2] === 0 && Module.HEAPU32[i + 3] === 0) {
-				if (segment123) {
-					infoOutput.value = 'Multiple possible segment #1..3 found; extraction failed'
-					return
-				}
-				segment123 = Module.HEAPU8.subarray(i * 4 + 16 - 0x30000, i * 4 + 16)
-			}
-		}
-		if (segment0 && segment0.length === 0x10000 && segment123 && segment123.length === 0x30000) {
-			// Blob parts are simply concatenated, which is just what we want.
-			saveROM.href = URL.createObjectURL(new Blob([segment0, segment123], { type: 'application/octet-stream' }))
+		const size = modelSelect.value.slice(0, 2) === 'EY' ? 0x80000 : 0x40000
+		const data = new Uint8Array(size)
+		if (sim && !sim._ReadCodeMemory(0, size, data)) {
+			saveROM.href = URL.createObjectURL(new Blob([data], { type: 'application/octet-stream' }))
 			saveROM.download = modelSelect.value + '.bin'
 			infoOutput.value = 'ROM extracted for ' + modelSelect.value
 		} else {
-			infoOutput.value = 'ROM not found'
+			infoOutput.value = 'What?'
 		}
 	}
 </script>
