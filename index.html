@@ -13,6 +13,10 @@
 		text-decoration: none;
 	}
 
+	svg{
+		vertical-align: middle;
+	}
+
 	#hud {
 		position: absolute;
 		left: 0;
@@ -20,6 +24,7 @@
 		right: 0;
 		opacity: .7;
 		text-align: center;
+		background-color: inherit;
 	}
 
 	#container {
@@ -328,6 +333,13 @@
 		</optgroup>
 	</select>
 	<input id="infoOutput" readonly value="No error handling; use inspector">
+	<a id="saveROM" title="Save ROM file for this model" href="javascript:;">
+		<svg viewBox="0 0 32 16" width="32" height="16">
+			<path fill="none" stroke="black" stroke-width="2" stroke-linecap="round"
+				d="M1 4h14v8H1zM4 2v2M8 2v2M12 2v2M4 12v2M8 12v2M12 12v2M21 1h6v7h3l-6 7-6-7h3z">
+			</path>
+		</svg>
+	</a>
 </div>
 <script src="lib/simwrapper.js"></script>
 <script src="lib/simlib.js"></script>
@@ -340,6 +352,8 @@
 		infoOutput.value = 'Loading'
 		container.style.backgroundImage = `url("data/${model}/face.svg")`
 		Array.prototype.forEach.call(document.getElementById('status').children, el => el.style.display = 'none')
+		const ctx = document.getElementById('screen').getContext('2d')
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 		// When the selected model is changed, a new SimWrapper is allocated to replace the old one.
 		const simWrapper = new SimWrapper
 		sim = simWrapper
@@ -353,7 +367,6 @@
 			}
 		}
 		const imageData = await simWrapper.GetDisplayImageData()
-		const ctx = document.getElementById('screen').getContext('2d')
 		ctx.canvas.width = imageData.width
 		ctx.canvas.height = imageData.height
 		const statusEl = document.getElementById('status' + model.slice(0, 2))
@@ -381,4 +394,40 @@
 			${(document.documentElement.clientHeight - height * scale) / 2}px
 		) scale(${scale})`
 	})()
+
+	saveROM.onclick = () => {
+		let segment0, segment123
+		// Search for the interrupt vector table.
+		// This code assumes a little-endian machine.
+		for (let i = Module.HEAPU16.indexOf(0xf000); i >= 0; i = Module.HEAPU16.indexOf(0xf000, i + 1)) {
+			const ivt = Module.HEAPU16.slice(i + 4, i + 16).sort()
+			if (ivt[0] && ivt[0] === ivt[10]) {
+				if (segment0) {
+					infoOutput.value = 'Multiple possible segment #0 found; extraction failed'
+					return
+				}
+				segment0 = Module.HEAPU8.subarray(i * 2, i * 2 + 0x10000)
+			}
+		}
+		// Search for the number part of the model (4-byte aligned).
+		// The criterion of HEAPU32[i+2..i+3] being zero is valid for emulator ROMs only.
+		const modelMagic = 0x2d | modelSelect.value.codePointAt(2) << 8 | modelSelect.value.codePointAt(3) << 16 | modelSelect.value.codePointAt(4) << 24
+		for (let i = Module.HEAPU32.indexOf(modelMagic); i >= 0; i = Module.HEAPU32.indexOf(modelMagic, i + 1)) {
+			if (String.fromCodePoint(Module.HEAPU8[i * 4 - 2], Module.HEAPU8[i * 4 - 1]) === modelSelect.value.slice(0, 2) && Module.HEAPU32[i + 2] === 0 && Module.HEAPU32[i + 3] === 0) {
+				if (segment123) {
+					infoOutput.value = 'Multiple possible segment #1..3 found; extraction failed'
+					return
+				}
+				segment123 = Module.HEAPU8.subarray(i * 4 + 16 - 0x30000, i * 4 + 16)
+			}
+		}
+		if (segment0 && segment0.length === 0x10000 && segment123 && segment123.length === 0x30000) {
+			// Blob parts are simply concatenated, which is just what we want.
+			saveROM.href = URL.createObjectURL(new Blob([segment0, segment123], { type: 'application/octet-stream' }))
+			saveROM.download = modelSelect.value + '.bin'
+			infoOutput.value = 'ROM extracted for ' + modelSelect.value
+		} else {
+			infoOutput.value = 'ROM not found'
+		}
+	}
 </script>
