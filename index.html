@@ -13,7 +13,7 @@
 		text-decoration: none;
 	}
 
-	svg{
+	svg {
 		vertical-align: middle;
 	}
 
@@ -53,11 +53,11 @@
 		width: 262px;
 	}
 
-	.face_key {
+	#keypad>*>* {
 		position: absolute;
 	}
 
-	.face_key:active {
+	#keypad>*>*:active {
 		backdrop-filter: invert(1);
 	}
 
@@ -285,7 +285,110 @@
 		</g>
 	</svg>
 	<canvas id="screen"></canvas>
-	<div id="keypad"></div>
+	<div id="keypad">
+		<div id="keypadCY">
+			<div data-ki="128" data-ko="1" style="left: 35px; top: 181px; width: 35px; height: 35px;"></div>
+			<div data-ki="128" data-ko="2" style="left: 82px; top: 181px; width: 35px; height: 35px;"></div>
+			<div data-ki="128" data-ko="16" style="left: 257px; top: 181px; width: 35px; height: 35px;"></div>
+			<div data-ki="0" data-ko="0" style="left: 304px; top: 181px; width: 35px; height: 35px;"></div>
+			<div data-ki="128" data-ko="4" style="left: 170px; top: 178px; width: 35px; height: 35px;"></div>
+			<div data-ki="64" data-ko="8" style="left: 170px; top: 227px; width: 35px; height: 35px;"></div>
+			<div data-ki="64" data-ko="4" style="left: 127px; top: 202px; width: 35px; height: 35px;"></div>
+			<div data-ki="128" data-ko="8" style="left: 212px; top: 202px; width: 35px; height: 35px;"></div>
+			<div data-ki="64" data-ko="1" style="left: 32px; top: 247px; width: 45px; height: 27px;"></div>
+			<div data-ki="64" data-ko="2" style="left: 85px; top: 247px; width: 45px; height: 27px;"></div>
+			<div data-ki="64" data-ko="16" style="left: 243px; top: 247px; width: 45px; height: 27px;"></div>
+			<div data-ki="64" data-ko="32" style="left: 296px; top: 247px; width: 45px; height: 27px;"></div>
+			<div data-ki="32" data-ko="1" style="left: 32px; top: 291px; width: 45px; height: 27px;"></div>
+			<div data-ki="32" data-ko="2" style="left: 85px; top: 291px; width: 45px; height: 27px;"></div>
+			<div data-ki="32" data-ko="4" style="left: 138px; top: 291px; width: 45px; height: 27px;"></div>
+			<div data-ki="32" data-ko="8" style="left: 191px; top: 291px; width: 45px; height: 27px;"></div>
+			<div data-ki="32" data-ko="16" style="left: 243px; top: 291px; width: 45px; height: 27px;"></div>
+			<div data-ki="32" data-ko="32" style="left: 296px; top: 291px; width: 45px; height: 27px;"></div>
+			<div data-ki="16" data-ko="1" style="left: 32px; top: 336px; width: 45px; height: 27px;"></div>
+			<div data-ki="16" data-ko="2" style="left: 85px; top: 336px; width: 45px; height: 27px;"></div>
+			<div data-ki="16" data-ko="4" style="left: 138px; top: 336px; width: 45px; height: 27px;"></div>
+			<div data-ki="16" data-ko="8" style="left: 191px; top: 336px; width: 45px; height: 27px;"></div>
+			<div data-ki="16" data-ko="16" style="left: 243px; top: 336px; width: 45px; height: 27px;"></div>
+			<div data-ki="16" data-ko="32" style="left: 296px; top: 336px; width: 45px; height: 27px;"></div>
+			<div data-ki="8" data-ko="1" style="left: 32px; top: 380px; width: 45px; height: 27px;"></div>
+			<div data-ki="8" data-ko="2" style="left: 85px; top: 380px; width: 45px; height: 27px;"></div>
+			<div data-ki="8" data-ko="4" style="left: 138px; top: 380px; width: 45px; height: 27px;"></div>
+			<div data-ki="8" data-ko="8" style="left: 191px; top: 380px; width: 45px; height: 27px;"></div>
+			<div data-ki="8" data-ko="16" style="left: 243px; top: 380px; width: 45px; height: 27px;"></div>
+			<div data-ki="8" data-ko="32" style="left: 296px; top: 380px; width: 45px; height: 27px;"></div>
+			<div data-ki="4" data-ko="1" style="left: 33px; top: 428px; width: 55px; height: 38px;"></div>
+			<div data-ki="4" data-ko="2" style="left: 96.5px; top: 428px; width: 55px; height: 38px;"></div>
+			<div data-ki="4" data-ko="4" style="left: 160px; top: 428px; width: 55px; height: 38px;"></div>
+			<div data-ki="4" data-ko="8" style="left: 222px; top: 428px; width: 55px; height: 38px;"></div>
+			<div data-ki="4" data-ko="16" style="left: 285px; top: 428px; width: 55px; height: 38px;"></div>
+			<div data-ki="2" data-ko="1" style="left: 33px; top: 480px; width: 55px; height: 38px;"></div>
+			<div data-ki="2" data-ko="2" style="left: 96.5px; top: 480px; width: 55px; height: 38px;"></div>
+			<div data-ki="2" data-ko="4" style="left: 160px; top: 480px; width: 55px; height: 38px;"></div>
+			<div data-ki="2" data-ko="8" style="left: 222px; top: 480px; width: 55px; height: 38px;"></div>
+			<div data-ki="2" data-ko="16" style="left: 285px; top: 480px; width: 55px; height: 38px;"></div>
+			<div data-ki="1" data-ko="1" style="left: 33px; top: 532px; width: 55px; height: 38px;"></div>
+			<div data-ki="1" data-ko="2" style="left: 96.5px; top: 532px; width: 55px; height: 38px;"></div>
+			<div data-ki="1" data-ko="4" style="left: 160px; top: 532px; width: 55px; height: 38px;"></div>
+			<div data-ki="1" data-ko="8" style="left: 222px; top: 532px; width: 55px; height: 38px;"></div>
+			<div data-ki="1" data-ko="16" style="left: 285px; top: 532px; width: 55px; height: 38px;"></div>
+			<div data-ki="16" data-ko="64" style="left: 33px; top: 584px; width: 55px; height: 38px;"></div>
+			<div data-ki="8" data-ko="64" style="left: 96.5px; top: 584px; width: 55px; height: 38px;"></div>
+			<div data-ki="4" data-ko="64" style="left: 160px; top: 584px; width: 55px; height: 38px;"></div>
+			<div data-ki="2" data-ko="64" style="left: 222px; top: 584px; width: 55px; height: 38px;"></div>
+			<div data-ki="1" data-ko="64" style="left: 285px; top: 584px; width: 55px; height: 38px;"></div>
+		</div>
+		<div id="keypadEY">
+			<div data-ki="0" data-ko="0" style="left: 34px; top: 183px; width: 29px; height: 29px;"></div>
+			<div data-ki="128" data-ko="2" style="left: 84px; top: 183px; width: 36px; height: 36px;"></div>
+			<div data-ki="128" data-ko="8" style="left: 192px; top: 179px; width: 36px; height: 36px;"></div>
+			<div data-ki="64" data-ko="1" style="left: 30px; top: 225px; width: 36px; height: 36px;"></div>
+			<div data-ki="64" data-ko="2" style="left: 84px; top: 225px; width: 36px; height: 36px;"></div>
+			<div data-ki="64" data-ko="4" style="left: 138px; top: 225px; width: 36px; height: 36px;"></div>
+			<div data-ki="64" data-ko="8" style="left: 192px; top: 225px; width: 36px; height: 36px;"></div>
+			<div data-ki="64" data-ko="16" style="left: 246px; top: 225px; width: 36px; height: 36px;"></div>
+			<div data-ki="32" data-ko="8" style="left: 192px; top: 273px; width: 36px; height: 36px;"></div>
+			<div data-ki="128" data-ko="32" style="left: 300px; top: 177px; width: 37px; height: 37px;"></div>
+			<div data-ki="64" data-ko="32" style="left: 300px; top: 224px; width: 37px; height: 37px;"></div>
+			<div data-ki="32" data-ko="1" style="left: 30px; top: 275px; width: 37px; height: 37px;"></div>
+			<div data-ki="32" data-ko="2" style="left: 84px; top: 275px; width: 37px; height: 37px;"></div>
+			<div data-ki="32" data-ko="4" style="left: 138px; top: 275px; width: 37px; height: 37px;"></div>
+			<div data-ki="32" data-ko="16" style="left: 246px; top: 275px; width: 37px; height: 37px;"></div>
+			<div data-ki="32" data-ko="32" style="left: 300px; top: 275px; width: 37px; height: 37px;"></div>
+			<div data-ki="16" data-ko="1" style="left: 30px; top: 322px; width: 37px; height: 37px;"></div>
+			<div data-ki="16" data-ko="2" style="left: 84px; top: 322px; width: 37px; height: 37px;"></div>
+			<div data-ki="16" data-ko="4" style="left: 138px; top: 322px; width: 37px; height: 37px;"></div>
+			<div data-ki="16" data-ko="8" style="left: 192px; top: 322px; width: 37px; height: 37px;"></div>
+			<div data-ki="16" data-ko="16" style="left: 246px; top: 322px; width: 37px; height: 37px;"></div>
+			<div data-ki="16" data-ko="32" style="left: 300px; top: 322px; width: 37px; height: 37px;"></div>
+			<div data-ki="8" data-ko="1" style="left: 30px; top: 368px; width: 37px; height: 37px;"></div>
+			<div data-ki="8" data-ko="2" style="left: 84px; top: 368px; width: 37px; height: 37px;"></div>
+			<div data-ki="8" data-ko="4" style="left: 138px; top: 368px; width: 37px; height: 37px;"></div>
+			<div data-ki="8" data-ko="8" style="left: 192px; top: 368px; width: 37px; height: 37px;"></div>
+			<div data-ki="8" data-ko="16" style="left: 246px; top: 368px; width: 37px; height: 37px;"></div>
+			<div data-ki="8" data-ko="32" style="left: 300px; top: 368px; width: 37px; height: 37px;"></div>
+			<div data-ki="4" data-ko="1" style="left: 27px; top: 418px; width: 47px; height: 47px;"></div>
+			<div data-ki="4" data-ko="2" style="left: 93px; top: 418px; width: 47px; height: 47px;"></div>
+			<div data-ki="4" data-ko="4" style="left: 159px; top: 418px; width: 47px; height: 47px;"></div>
+			<div data-ki="4" data-ko="8" style="left: 225px; top: 418px; width: 47px; height: 47px;"></div>
+			<div data-ki="4" data-ko="16" style="left: 291px; top: 418px; width: 47px; height: 47px;"></div>
+			<div data-ki="2" data-ko="1" style="left: 27px; top: 472px; width: 47px; height: 47px;"></div>
+			<div data-ki="2" data-ko="2" style="left: 93px; top: 472px; width: 47px; height: 47px;"></div>
+			<div data-ki="2" data-ko="4" style="left: 159px; top: 472px; width: 47px; height: 47px;"></div>
+			<div data-ki="2" data-ko="8" style="left: 225px; top: 472px; width: 47px; height: 47px;"></div>
+			<div data-ki="2" data-ko="16" style="left: 291px; top: 472px; width: 47px; height: 47px;"></div>
+			<div data-ki="1" data-ko="1" style="left: 27px; top: 526px; width: 47px; height: 47px;"></div>
+			<div data-ki="1" data-ko="2" style="left: 93px; top: 526px; width: 47px; height: 47px;"></div>
+			<div data-ki="1" data-ko="4" style="left: 159px; top: 526px; width: 47px; height: 47px;"></div>
+			<div data-ki="1" data-ko="8" style="left: 225px; top: 526px; width: 47px; height: 47px;"></div>
+			<div data-ki="1" data-ko="16" style="left: 291px; top: 526px; width: 47px; height: 47px;"></div>
+			<div data-ki="16" data-ko="64" style="left: 27px; top: 580px; width: 47px; height: 47px;"></div>
+			<div data-ki="8" data-ko="64" style="left: 93px; top: 580px; width: 47px; height: 47px;"></div>
+			<div data-ki="4" data-ko="64" style="left: 159px; top: 580px; width: 47px; height: 47px;"></div>
+			<div data-ki="2" data-ko="64" style="left: 225px; top: 580px; width: 47px; height: 47px;"></div>
+			<div data-ki="1" data-ko="64" style="left: 291px; top: 580px; width: 47px; height: 47px;"></div>
+		</div>
+	</div>
 </div>
 <div id="hud">
 	<a href="https://github.com/satgo1546/classwiz-emulator">
@@ -344,46 +447,48 @@
 <script src="lib/simwrapper.js"></script>
 <script src="lib/simlib.js"></script>
 <script>
-	// The global variable sim is for ease of debugging.
-	let sim
+	// Since simlib.wasm assumes global states, SimWrapper must in fact be a singleton.
+	// Thus, it's not wrong to store the instance in a global variable.
+	const sim = new SimWrapper
+	const ctx = document.getElementById('screen').getContext('2d')
+	let statusEl
 	modelSelect.onchange = async () => {
-		const model = modelSelect.value
-		if (sim) sim.Stop()
 		infoOutput.value = 'Loading'
-		container.style.backgroundImage = `url("data/${model}/face.svg")`
-		Array.prototype.forEach.call(document.getElementById('status').children, el => el.style.display = 'none')
-		const ctx = document.getElementById('screen').getContext('2d')
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-		// When the selected model is changed, a new SimWrapper is allocated to replace the old one.
-		const simWrapper = new SimWrapper
-		sim = simWrapper
-		await simWrapper.Init(model)
-		infoOutput.value = simWrapper.RomVersion()
-		document.getElementById('keypad').innerHTML = await (await fetch(`data/${model}/face.html`)).text()
-		keypad.onpointerdown = event => {
-			if (event.target.classList.contains('face_key')) {
-				const [, ki, ko] = /kiko_(\w\w)(\w\w)/.exec(event.target.id)
-				simWrapper.SetKey(parseInt(ki, 16), parseInt(ko, 16))
-			}
-		}
-		const imageData = await simWrapper.GetDisplayImageData()
-		ctx.canvas.width = imageData.width
-		ctx.canvas.height = imageData.height
-		const statusEl = document.getElementById('status' + model.slice(0, 2))
+		container.style.backgroundImage = `url("data/${modelSelect.value}/face.svg")`
+		Array.prototype.forEach.call(document.querySelectorAll('#status>*, #keypad>*'), el => el.style.display = 'none')
+		sim.Stop()
+		sim._simulatorRunning = false
+		// Stop() is asynchronous. Wait for SimWrapper to stop.
+		await new Promise(resolve => setTimeout(resolve, 5))
+		await sim.Init(modelSelect.value)
+		infoOutput.value = sim.RomVersion()
+		document.getElementById('keypad' + modelSelect.value.slice(0, 2)).style.display = ''
+		statusEl = document.getElementById('status' + modelSelect.value.slice(0, 2))
 		statusEl.style.display = ''
-		requestAnimationFrame(async function render() {
-			if (!simWrapper.SimulatorIsRunning()) return
-			simWrapper.GetDisplayImageData(imageData)
+	}
+
+	// Beware that _simRunning and _simulatorRunning are different.
+	// _simRunning controls the execution loop.
+	// _simulatorRunning is set when _SimStartCallback(2) is called, but not unset when _SimStop() gets called.
+	// SimulatorIsRunning() returns _simulatorRunning.
+	let imageData
+	requestAnimationFrame(function render() {
+		if (sim.SimulatorIsRunning()) {
+			imageData = sim.GetDisplayImageData(imageData)
+			ctx.canvas.width = imageData.width
+			ctx.canvas.height = imageData.height
 			ctx.putImageData(imageData, 0, 0)
-			const status = simWrapper.GetSymbolState()
+			const status = sim.GetSymbolState()
 			for (let i = 0; i < status.length; i++) {
 				statusEl.children[i].style.opacity = status[i] === '1' ? 1 : .1
 			}
-			requestAnimationFrame(render)
-		})
-	}
+		} else {
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+		}
+		requestAnimationFrame(render)
+	})
 
-	(onresize = () => {
+	onresize = () => {
 		const width = 375
 		const height = 635
 		const scale = Math.min(document.documentElement.clientWidth / width, document.documentElement.clientHeight / height)
@@ -393,12 +498,20 @@
 			${(document.documentElement.clientWidth - width * scale) / 2}px,
 			${(document.documentElement.clientHeight - height * scale) / 2}px
 		) scale(${scale})`
-	})()
+	}
+	onresize()
+
+	keypad.onpointerdown = event => {
+		if (event.target.hasAttribute('data-ki') && sim.SimulatorIsRunning()) {
+			sim.SetKey(+event.target.dataset.ki, +event.target.dataset.ko)
+		}
+	}
 
 	saveROM.onclick = () => {
 		const size = modelSelect.value.slice(0, 2) === 'EY' ? 0x80000 : 0x40000
 		const data = new Uint8Array(size)
-		if (sim && !sim._ReadCodeMemory(0, size, data)) {
+		// 0 means success.
+		if (sim._ReadCodeMemory(0, size, data) === 0) {
 			saveROM.href = URL.createObjectURL(new Blob([data], { type: 'application/octet-stream' }))
 			saveROM.download = modelSelect.value + '.bin'
 			infoOutput.value = 'ROM extracted for ' + modelSelect.value

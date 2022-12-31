@@ -18,7 +18,7 @@ Not implemented yet:
 
 Known bugs:
 
-- The display flickers after switching models.
+- Memory seems not cleared after switching models. This may lead to weird things.
 
 ## ROM extraction
 
