@@ -4,6 +4,41 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <title>ClassWiz emulator</title>
 <style>
+	@font-face {
+		font-family: "CASIO ClassWiz";
+		src: url("data/CASIOClassWiz.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "CASIO ClassWiz CE";
+		src: url("data/CASIOClassWizCE.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "CASIO ClassWiz DE";
+		src: url("data/CASIOClassWizDE.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "CASIO ClassWiz Fr";
+		src: url("data/CASIOClassWizFr.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "CASIO ClassWiz RS";
+		src: url("data/CASIOClassWizRS.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "CASIO ClassWiz CW01";
+		src: url("data/CASIOClassWizCW01.ttf") format("truetype");
+	}
+
+	@font-face {
+		font-family: "CASIO ClassWiz CW02";
+		src: url("data/CASIOClassWizCW02.ttf") format("truetype");
+	}
+
 	body {
 		margin: 0;
 		overflow: hidden;
@@ -61,6 +96,12 @@
 	.active,
 	#keypad>*>*:active {
 		backdrop-filter: invert(1);
+	}
+
+	#keylog {
+		padding: 1rem 0 0 1rem;
+		overflow-wrap: break-word;
+		word-break: break-all;
 	}
 
 </style>
