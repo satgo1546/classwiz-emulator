@@ -58,6 +58,7 @@
 		position: absolute;
 	}
 
+	.active,
 	#keypad>*>*:active {
 		backdrop-filter: invert(1);
 	}
@@ -452,8 +453,9 @@
 <script>
 	// Since simlib.wasm assumes global states, SimWrapper must in fact be a singleton.
 	// Thus, it's not wrong to store the instance in a global variable.
-	const sim = new SimWrapper
+	let sim = new SimWrapper
 	const ctx = document.getElementById('screen').getContext('2d')
+	let keypadEl
 	let statusEl
 	modelSelect.onchange = async () => {
 		infoOutput.value = 'Loading'
@@ -463,9 +465,11 @@
 		sim._simulatorRunning = false
 		// Stop() is asynchronous. Wait for SimWrapper to stop.
 		await new Promise(resolve => setTimeout(resolve, 5))
+		sim = new SimWrapper
 		await sim.Init(modelSelect.value)
 		infoOutput.value = sim.RomVersion()
-		document.getElementById('keypad' + modelSelect.value.slice(0, 2)).style.display = ''
+		keypadEl = document.getElementById('keypad' + modelSelect.value.slice(0, 2))
+		keypadEl.style.display = ''
 		statusEl = document.getElementById('status' + modelSelect.value.slice(0, 2))
 		statusEl.style.display = ''
 	}
@@ -504,9 +508,56 @@
 	}
 	onresize()
 
+	const keyboardMap = {}
+	keyboardMap['Tab'] = keyboardMap['Spacebar'] = keyboardMap[' '] = ['[AC]']
+	keyboardMap['F1'] = ['[SHIFT]', '[SECONDE]']
+	keyboardMap['F2'] = ['[ALPHA]']
+	keyboardMap['F3'] = keyboardMap['Home'] = ['[MENU]', '[HOME]']
+	keyboardMap['F4'] = ['[ON]']
+	keyboardMap['F5'] = ['[OPTN]', '[CATALOG]']
+	keyboardMap['='] = ['[=]', '[EXE]']
+	keyboardMap['Enter'] = ['[EXE]', '[=]']
+	keyboardMap['Delete'] = keyboardMap['Backspace'] = ['[DEL]', '[SUPPR]']
+	keyboardMap['Up'] = keyboardMap['ArrowUp'] = ['[Up]']
+	keyboardMap['Down'] = keyboardMap['ArrowDown'] = ['[Down]']
+	keyboardMap['Left'] = keyboardMap['ArrowLeft'] = ['[Left]']
+	keyboardMap['Right'] = keyboardMap['ArrowRight'] = ['[Right]']
+	keyboardMap['^'] = ['[^]']
+	keyboardMap['('] = ['[(]']
+	keyboardMap[')'] = ['[)]']
+	keyboardMap['+'] = ['[+]']
+	keyboardMap['-'] = ['[-]']
+	keyboardMap['*'] = ['[*]']
+	keyboardMap['/'] = ['[/]']
+	keyboardMap['.'] = ['[.]', '[,]']
+	keyboardMap[','] = ['[,]', '[.]']
+	keyboardMap['0'] = ['[0]']
+	keyboardMap['1'] = ['[1]']
+	keyboardMap['2'] = ['[2]']
+	keyboardMap['3'] = ['[3]']
+	keyboardMap['4'] = ['[4]']
+	keyboardMap['5'] = ['[5]']
+	keyboardMap['6'] = ['[6]']
+	keyboardMap['7'] = ['[7]']
+	keyboardMap['8'] = ['[8]']
+	keyboardMap['9'] = ['[9]']
+	keyboardMap['x'] = keyboardMap['X'] = ['[x]']
+	keyboardMap['y'] = keyboardMap['Y'] = ['[y]']
+
 	keypad.onpointerdown = event => {
 		if (event.target.hasAttribute('data-ki') && sim.SimulatorIsRunning()) {
 			sim.SetKey(+event.target.dataset.ki, +event.target.dataset.ko)
+		}
+	}
+
+	onkeydown = onkeyup = event => {
+		for (const logKey of keyboardMap[event.key] || []) if (sim._logKeyToKiKo[logKey]) {
+			event.preventDefault()
+			const [ki, ko] = sim._logKeyToKiKo[logKey]
+			if (event.type === 'keydown') sim.SetKey(ki, ko)
+			const el = keypadEl.querySelector(`[data-ki="${ki}"][data-ko="${ko}"]`)
+			if (el) event.type === 'keydown' ? el.classList.add('active') : el.classList.remove('active')
+			break
 		}
 	}
 

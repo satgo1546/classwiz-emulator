@@ -16,7 +16,6 @@ Differences from the official one:
 
 Not implemented yet:
 
-- Does not respond to PC keyboard.
 - Key log, screenshot, all the bells and whistles.
 
 Known bugs:
